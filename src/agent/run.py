@@ -5,7 +5,7 @@ from datetime import datetime
 import psutil
 import requests
 
-AGENT_ID = "ec72ffd7-c367-43df-baf4-82d9b535e30d"
+AGENT_ID = "ccfeef29-f20a-43f0-9d7f-39f4bf2383c6"
 SERVER_URL = "http://localhost:8000/v1/logs/"
 
 
@@ -115,7 +115,10 @@ def main():
     if len(unsent_logs) > 0:
         save_logs(unsent_logs)
     else:
-        os.remove('logs.json')
+        try:
+            os.remove('logs.json')
+        except OSError:
+            print("Error removing file.")
 
 
 if __name__ == "__main__":
